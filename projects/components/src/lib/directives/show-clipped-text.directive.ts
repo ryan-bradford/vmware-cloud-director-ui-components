@@ -256,7 +256,7 @@ export class ShowClippedTextDirective implements OnDestroy, OnInit {
     private mutationObserver = new MutationObserver(() => {
         // Make sure isMouseOver is first. It's an optimization to avoid measuring the DOM
         // Also don't update the tooltip if content changes but the mouse is over a different host
-        if (tip.isMouseOver && this.hostElement === tip.currentHost) {
+        if (tip.isMouseOver && tip.currentDirective && this.hostElement === tip.currentHost) {
             if (this.isOverflowing()) {
                 tip.update();
             } else {
