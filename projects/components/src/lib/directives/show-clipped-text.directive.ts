@@ -39,7 +39,7 @@ export interface CliptextConfig {
 /**
  * Singleton tooltip created by directive
  */
-const tip = {
+export const tip = {
     /** A single DOM node structure for the popup is created and shared with all instances (the .tooltip)  */
     container: null as HTMLElement,
 
