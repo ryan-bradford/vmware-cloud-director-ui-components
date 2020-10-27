@@ -274,9 +274,11 @@ export class ShowClippedTextDirective implements OnDestroy, OnInit {
     }
 
     ngOnDestroy(): void {
-        if (!this.disabled) {
-            this.deactivate();
-        }
+        try {
+            if (!this.disabled) {
+                this.deactivate();
+            }
+        } catch (err) {}
     }
 
     deactivate(): void {

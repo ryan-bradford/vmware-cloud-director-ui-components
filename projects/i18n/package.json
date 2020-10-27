@@ -6,6 +6,7 @@
     "@angular/core": ">6.0.0"
   },
   "dependencies": {
-    "messageformat": "1.0.2"
+    "messageformat": "1.0.2",
+    "tslib": "^2.0.0"
   }
 }

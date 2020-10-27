@@ -35,6 +35,7 @@ export class BaseWidgetObject<T> {
     /**
      * Returns an element locator that will find a child with the given cssSelector when called.
      */
+    // tslint:disable-next-line: whitespace
     protected locatorForChild? = (cssSelector: string): ElementLocator<T> => {
         return (options?: unknown) => this.locatorDriver.get(cssSelector, options).unwrap();
     };
@@ -42,6 +43,7 @@ export class BaseWidgetObject<T> {
     /**
      * Returns an element locator that will find a parent with the given cssSelector when called.
      */
+    // tslint:disable-next-line: whitespace
     protected locatorForParent? = (cssSelector: string): ElementLocator<T> => {
         return (options?: unknown) => this.locatorDriver.parents(cssSelector, options).unwrap();
     };
@@ -49,6 +51,7 @@ export class BaseWidgetObject<T> {
     /**
      * Returns an element locator that will find a child with the given cssSelector and text when called.
      */
+    // tslint:disable-next-line: whitespace
     protected locatorForText? = (cssSelector: string, text: string): ElementLocator<T> => {
         return (options?: unknown) => this.locatorDriver.getByText(cssSelector, text, options).unwrap();
     };

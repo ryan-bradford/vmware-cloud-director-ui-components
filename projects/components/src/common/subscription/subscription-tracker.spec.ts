@@ -13,6 +13,7 @@ describe('SubscriptionTracker', () => {
      * The Subscription tracker is typically created within Angular components. However, these specs use an
      * object that implements the OnDestroy interface for simplicity
      */
+    // TODO: Add Angular decorator.
     class Destroyable implements OnDestroy {
         public tracker = new SubscriptionTracker(this);
 

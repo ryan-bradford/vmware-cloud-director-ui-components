@@ -6,8 +6,15 @@
   ],
   "rules": {
     "adjacent-overload-signatures": false,
+    "align": {
+      "options": [
+        "parameters",
+        "statements"
+      ]
+    },
     "array-type": false,
     "arrow-parens": false,
+    "arrow-return-shorthand": true,
     "deprecation": {
       "severity": "warning"
     },
@@ -15,6 +22,7 @@
     "comment-format": [true, "check-space"],
     "component-class-suffix": true,
     "contextual-lifecycle": true,
+    "curly": true,
     "directive-class-suffix": true,
     "directive-selector": [
       true,
@@ -28,6 +36,7 @@
       "vcd",
       "kebab-case"
     ],
+    "eofline": true,
     "file-header": [
       true,
       {
@@ -40,6 +49,12 @@
       "rxjs/Rx"
     ],
     "interface-name": false,
+    "import-spacing": true,
+    "indent": {
+      "options": [
+        "spaces"
+      ]
+    },
     "max-classes-per-file": false,
     "max-line-length": [
       true,
@@ -113,12 +128,52 @@
     "no-document-domain": true,
     "no-disable-auto-sanitization": true,
     "no-duplicate-parameter-names": true,
+    "space-before-function-paren": {
+      "options": {
+        "asyncArrow": "always",
+        "constructor": "never",
+        "method": "never",
+        "named": "never"
+      }
+    },
     "no-exec-script": true,
     "no-octal-literal": true,
     "no-string-based-set-immediate": true,
     "no-string-based-set-interval": true,
+    "typedef-whitespace": {
+      "options": [
+        {
+          "call-signature": "nospace",
+          "index-signature": "nospace",
+          "parameter": "nospace",
+          "property-declaration": "nospace",
+          "variable-declaration": "nospace"
+        },
+        {
+          "call-signature": "onespace",
+          "index-signature": "onespace",
+          "parameter": "onespace",
+          "property-declaration": "onespace",
+          "variable-declaration": "onespace"
+        }
+      ]
+    },
     "no-string-based-set-timeout": true,
     "no-eval": true,
-    "semicolon": [true, "always", "strict-bound-class-methods"]
+    "semicolon": [
+      true,
+      "always",
+      "strict-bound-class-methods"
+    ],
+    "whitespace": {
+      "options": [
+        "check-branch",
+        "check-decl",
+        "check-operator",
+        "check-separator",
+        "check-type",
+        "check-typecast"
+      ]
+    }
   }
 }

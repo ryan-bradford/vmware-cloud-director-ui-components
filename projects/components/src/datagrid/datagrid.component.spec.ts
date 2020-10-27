@@ -4,7 +4,7 @@
  */
 
 import { Component, HostBinding, TrackByFunction, ViewChild } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingListener } from '@clr/angular';
 import { MockTranslationService, TranslationService } from '@vcd/i18n';
@@ -226,14 +226,18 @@ describe('DatagridComponent', () => {
             });
 
             describe('@Input() datagridSelection', () => {
-                it('emits multiple rows when set to multi selection', function(this: HasFinderAndGrid): void {
+                it('emits multiple rows when set to multi selection', fakeAsync(function (
+                    this: HasFinderAndGrid
+                ): void {
                     this.finder.hostComponent.selectionType = GridSelectionType.Multi;
                     this.finder.detectChanges();
                     this.clrGridWidget.selectRow(0);
+                    tick();
                     expect(this.finder.hostComponent.datagridSelection).toEqual([mockData[0]]);
                     this.clrGridWidget.selectRow(1);
+                    tick();
                     expect(this.finder.hostComponent.datagridSelection).toEqual(mockData);
-                });
+                }));
 
                 it('emits only one row when set to single selection', function (this: HasFinderAndGrid): void {
                     this.finder.hostComponent.selectionType = GridSelectionType.Single;
@@ -246,15 +250,19 @@ describe('DatagridComponent', () => {
             });
 
             describe('@Output() selectionChanged', () => {
-                it('emits multiple rows when set to multi selection', function (this: HasFinderAndGrid): void {
+                it('emits multiple rows when set to multi selection', fakeAsync(function (
+                    this: HasFinderAndGrid
+                ): void {
                     this.finder.hostComponent.selectionType = GridSelectionType.Multi;
                     this.finder.detectChanges();
                     spyOn(this.finder.hostComponent, 'selectionChanged');
                     this.clrGridWidget.selectRow(0);
+                    tick();
                     expect(this.finder.hostComponent.selectionChanged).toHaveBeenCalledWith([mockData[0]]);
                     this.clrGridWidget.selectRow(1);
+                    tick();
                     expect(this.finder.hostComponent.selectionChanged).toHaveBeenCalledWith(mockData);
-                });
+                }));
 
                 it('emits only one row when set to single selection', function (this: HasFinderAndGrid): void {
                     this.finder.hostComponent.selectionType = GridSelectionType.Single;
@@ -269,7 +277,7 @@ describe('DatagridComponent', () => {
 
             describe('@Input() gridData', () => {
                 describe('when data is refreshed removed a row selected a row if the row is removed', () => {
-                    it('in single selection', async function(this: HasFinderAndGrid): Promise<void> {
+                    it('in single selection', async function (this: HasFinderAndGrid): Promise<void> {
                         this.finder.hostComponent.selectionType = GridSelectionType.Single;
                         this.finder.hostComponent.gridData = {
                             items: mockData,
@@ -286,7 +294,7 @@ describe('DatagridComponent', () => {
                         expect(this.component.datagridSelection).toEqual([]);
                     });
 
-                    it('in multi selection', async function(this: HasFinderAndGrid): Promise<void> {
+                    it('in multi selection', async function (this: HasFinderAndGrid): Promise<void> {
                         this.finder.hostComponent.selectionType = GridSelectionType.Multi;
                         this.finder.hostComponent.gridData = {
                             items: mockData,
@@ -294,14 +302,16 @@ describe('DatagridComponent', () => {
                         };
                         this.finder.detectChanges();
                         this.clrGridWidget.selectRow(0);
+                        await new Promise((resolve) => setTimeout(() => resolve()));
                         this.clrGridWidget.selectRow(1);
+                        await new Promise((resolve) => setTimeout(() => resolve()));
                         expect(this.finder.hostComponent.datagridSelection).toEqual(mockData);
                         this.finder.hostComponent.gridData = {
                             items: [mockData[0]],
                             totalItems: 2,
                         };
                         this.finder.detectChanges();
-                        await new Promise(resolve => setTimeout(() => resolve()));
+                        await new Promise((resolve) => setTimeout(() => resolve()));
                         this.finder.detectChanges();
                         expect(this.finder.hostComponent.datagridSelection).toEqual([mockData[0]]);
                     });
@@ -320,7 +330,7 @@ describe('DatagridComponent', () => {
                     expect(this.finder.hostComponent.datagridSelection).toEqual([mockData[1]]);
                 });
 
-                it('allows you to initially select an item not on the current page', async function(this: HasFinderAndGrid): Promise<
+                it('allows you to initially select an item not on the current page', async function (this: HasFinderAndGrid): Promise<
                     void
                 > {
                     this.finder.hostComponent.selectionType = GridSelectionType.Multi;
@@ -339,7 +349,7 @@ describe('DatagridComponent', () => {
                         totalItems: 2,
                     };
                     this.finder.detectChanges();
-                    await new Promise(resolve => setTimeout(() => resolve()));
+                    await new Promise((resolve) => setTimeout(() => resolve()));
                     this.finder.detectChanges();
                     console.log(this.finder.hostComponent.datagridSelection);
                     expect(this.finder.hostComponent.datagridSelection).toEqual([mockData[1]]);
@@ -871,7 +881,7 @@ describe('DatagridComponent', () => {
                 this.finder.detectChanges();
                 expect(this.component.shouldShowActionBarOnTop).toBeTruthy();
             });
-            it('returns true when there are contextual actions to be displayed on top', function(this: HasFinderAndGrid): void {
+            it('returns true when there are contextual actions to be displayed on top', function (this: HasFinderAndGrid): void {
                 this.finder.hostComponent.gridData = {
                     items: mockData,
                     totalItems: 2,

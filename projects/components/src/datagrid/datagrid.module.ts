@@ -16,6 +16,7 @@ import { VcdFormModule } from '../form/form.module';
 import { ShowClippedTextDirectiveModule } from '../lib/directives/show-clipped-text.directive.module';
 import { DatagridComponent } from './datagrid.component';
 import { ComponentRendererOutletDirective } from './directives/component-renderer-outlet.directive';
+import { DatagridFilter } from './filters/datagrid-filter';
 import { DatagridMultiSelectFilterComponent } from './filters/datagrid-multiselect-filter.component';
 import { DatagridNumericFilterComponent } from './filters/datagrid-numeric-filter.component';
 import { DatagridSelectFilterComponent } from './filters/datagrid-select-filter.component';

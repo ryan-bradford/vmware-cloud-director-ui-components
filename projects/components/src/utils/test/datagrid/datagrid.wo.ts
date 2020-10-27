@@ -45,9 +45,7 @@ export class ClrDatagridWidgetObject extends WidgetObject<ClrDatagrid> {
      * Gives the linked text in the given cell represented by the {@param rowIndex} and {@param columnIndex} if present.
      */
     getCellLink(rowIndex: number, columnIndex: number): string[] {
-        return this.getCell(rowIndex, columnIndex)
-            .nativeElement.querySelector('a')
-            .getAttribute('href');
+        return this.getCell(rowIndex, columnIndex).nativeElement.querySelector('a').getAttribute('href');
     }
 
     /**
@@ -85,7 +83,7 @@ export class ClrDatagridWidgetObject extends WidgetObject<ClrDatagrid> {
      * Returns an array of the texts for columns that are hidden.
      */
     get hiddenColumnHeaders(): string[] {
-        return this.getTexts('clr-dg-column.datagrid-hidden-column');
+        return this.getTexts('clr-dg-column.datagrid-hidden-column span:not(.clr-sr-only)');
     }
 
     /**
@@ -141,14 +139,14 @@ export class ClrDatagridWidgetObject extends WidgetObject<ClrDatagrid> {
      * Returns the native element contents within all the detail pane open.
      */
     getAllDetailRowContents(): string[] {
-        return this.findElements('clr-dg-row-detail').map(detail => detail.nativeElement);
+        return this.findElements('clr-dg-row-detail').map((detail) => detail.nativeElement);
     }
 
     /**
      * Returns the native element contents within all the detail pane open.
      */
     getAllDetailPaneContents(): string[] {
-        return this.findElements('.datagrid-detail-pane-content').map(detail => detail.nativeElement);
+        return this.findElements('.datagrid-detail-pane-content').map((detail) => detail.nativeElement);
     }
 
     /**
@@ -226,7 +224,7 @@ export class ClrDatagridWidgetObject extends WidgetObject<ClrDatagrid> {
      * Gives a list of the labels of the displayed action buttons at the top of the grid.
      */
     getTopPositionedButtons(): string[] {
-        return this.findElements('clr-dg-action-bar button').map(button => button.nativeElement.textContent);
+        return this.findElements('clr-dg-action-bar button').map((button) => button.nativeElement.textContent);
     }
 
     /**

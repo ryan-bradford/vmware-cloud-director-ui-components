@@ -90,9 +90,7 @@ export function createDatagridFilterTestHelperWithFinder<V, C>(
  * TestHostComponent that has only single column for filter testing.
  */
 @Component({
-    template: `
-        <vcd-datagrid [gridData]="gridData" [columns]="[column]"></vcd-datagrid>
-    `,
+    template: ` <vcd-datagrid [gridData]="gridData" [columns]="[column]"></vcd-datagrid> `,
 })
 export class FilterTestHostComponent {
     /**
