@@ -4,7 +4,6 @@
  */
 import { evaluate, EvaluateResult } from '@wessberg/ts-evaluator';
 import * as ts from 'typescript';
-import { factory } from 'typescript';
 
 export function hasValue(item: any): boolean {
     return item !== null && item !== undefined;
@@ -46,7 +45,7 @@ export function getArrayItemsInitializer(
     if (ts.isIdentifier(expression)) {
         const variableInitializer = getVariableInitializer(expression, typeChecker);
         if (ts.isObjectLiteralExpression(variableInitializer)) {
-            arrayLiteralExpression = factory.createArrayLiteral([variableInitializer]);
+            arrayLiteralExpression = ts.createArrayLiteral([variableInitializer]);
         } else if (ts.isArrayLiteralExpression(variableInitializer)) {
             arrayLiteralExpression = variableInitializer;
         } else {
